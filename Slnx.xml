@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Slnx</name>
+    </assembly>
+    <members>
+        <member name="T:Slnx.DescendantConfiguration">
+            <summary>
+            Represents a "&lt;Configuration&gt;" like tag.
+            </summary>
+        </member>
+        <member name="P:Slnx.DescendantConfiguration.Solution">
+            <summary>
+            Solution where this configuration applies to.
+            </summary>
+        </member>
+        <member name="P:Slnx.DescendantConfiguration.Project">
+            <summary>
+            Project where this configuration applies to.
+            </summary>
+        </member>
+        <member name="M:Slnx.DescendantConfiguration.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.DescendantConfiguration" /> struct.
+            </summary>
+            <param name="solution">Solution where this configuration applies to.</param>
+            <param name="project">Project where this configuration applies to.</param>
+        </member>
+        <member name="T:Slnx.Folder">
+            <summary>
+            Represents a folder in the same level as the solution.
+            </summary>
+        </member>
+        <member name="P:Slnx.Folder.Empty">
+            <summary>
+            Gets an instance of <see cref="T:Slnx.Folder" /> with no content and name "(Folder Name)".
+            </summary>
+        </member>
+        <member name="P:Slnx.Folder.Name">
+            <summary>
+            Name of the folder.
+            </summary>
+        </member>
+        <member name="P:Slnx.Folder.DescendantProjects">
+            <summary>
+            Nested projects in the folder.
+            </summary>
+        </member>
+        <member name="P:Slnx.Folder.DescendantFolders">
+            <summary>
+            Nested folders in the folder.
+            </summary>
+        </member>
+        <member name="P:Slnx.Folder.DescendantFiles">
+            <summary>
+            Files in the folder.
+            </summary>
+        </member>
+        <member name="M:Slnx.Folder.#ctor(System.String,Slnx.Project[],Slnx.Folder[],System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.Folder" /> class.
+            </summary>
+            <param name="name">Folder name.</param>
+            <param name="projects">All projects.</param>
+            <param name="folders">All folders.</param>
+            <param name="files">All files.</param>
+        </member>
+        <member name="T:Slnx.Project">
+            <summary>
+            Represents a single project found in the SLNX file.
+            </summary>
+        </member>
+        <member name="P:Slnx.Project.Exists">
+            <summary>
+            Checks if the project file exists.
+            </summary>
+        </member>
+        <member name="P:Slnx.Project.Path">
+            <summary>
+            Path to the project file.
+            </summary>
+        </member>
+        <member name="P:Slnx.Project.Type">
+            <summary>
+            Type of the project.
+            </summary>
+        </member>
+        <member name="P:Slnx.Project.Extension">
+            <summary>
+            Extension of the project file. If the extension isn't present, the
+            value is null.
+            </summary>
+        </member>
+        <member name="P:Slnx.Project.HasExtension">
+            <summary>
+            Checks if the <see cref="P:Slnx.Project.Extension" /> property has an extension.
+            </summary> 
+        </member>
+        <member name="P:Slnx.Project.TypeGuid">
+            <summary>
+            Gets the type of the project from the GUID. The value is always null
+            unless the XML attribute "Type" exists.
+            </summary>
+        </member>
+        <member name="P:Slnx.Project.Configuration">
+            <summary>
+            Descendant configuration.
+            </summary>
+        </member>
+        <member name="M:Slnx.Project.#ctor(System.String,System.Nullable{System.Guid},System.Nullable{Slnx.DescendantConfiguration})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.Project" /> struct.
+            </summary>
+            <param name="path">Path to the project file.</param>
+            <param name="typeGuid">The GUID indicating its type.</param>
+            <param name="config">The configuration.</param>
+        </member>
+        <member name="T:Slnx.ProjectType">
+            <summary>
+            Represents the type of a project file.
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.CSharp">
+            <summary>
+            C# Project (*.csproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.VC">
+            <summary>
+            Visual C++ Project (*.vcxproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.VisualBasic">
+            <summary>
+            VB.NET Project (*.vbproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.FSharp">
+            <summary>
+            F# Project (*.fsproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.Installer">
+            <summary>
+            Microsoft Installer Project (*.vdproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.Shared">
+            <summary>
+            Shared Project (*.shproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.Database">
+            <summary>
+            Database Project (*.dbproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.DockerCompose">
+            <summary>
+            Docker Compose Project (*.dcproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.Sql">
+            <summary>
+            SQL Project (*.sqlproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.JavaScript">
+            <summary>
+            JavaScript Application/ECMAScript Project (*.esproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.NetCore2015">
+            <summary>
+            .NET Core 2015 Project (*.xproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.Common">
+            <summary>
+            Common MSBuild Project (*.msbuildproj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.Project">
+            <summary>
+            Project (*.proj)
+            </summary>
+        </member>
+        <member name="F:Slnx.ProjectType.Unknown">
+            <summary>
+            Any project type which is not defined here.
+            </summary>
+        </member>
+        <member name="T:Slnx.ProjectTypeExtensions">
+            <summary>
+            Extension methods for <see cref="T:Slnx.ProjectType" />.
+            </summary>
+        </member>
+        <member name="M:Slnx.ProjectTypeExtensions.GetExtension(Slnx.ProjectType)">
+            <summary>
+            Returns the extension for the project type.
+            </summary>
+            <param name="projectType">Type of the project.</param>
+            <returns>A file extension for that project type, excluding the period.</returns>
+        </member>
+        <member name="M:Slnx.ProjectTypeExtensions.FromExtension(System.String)">
+            <summary>
+            Returns the project type for the project extension.
+            </summary>
+            <param name="extension">Extension of the project, excluding the period.</param>
+            <returns>A type of the project from the extension.</returns>
+        </member>
+        <member name="T:Slnx.SlnxFactory">
+            <summary>
+            Builds a SLNX file.
+            </summary>
+        </member>
+        <member name="F:Slnx.SlnxFactory.Folders">
+            <summary>
+            All folders.
+            </summary>
+        </member>
+        <member name="F:Slnx.SlnxFactory.Projects">
+            <summary>
+            All projects.
+            </summary>
+        </member>
+        <member name="M:Slnx.SlnxFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.SlnxFactory" /> class.
+            </summary>
+        </member>
+        <member name="M:Slnx.SlnxFactory.AsModel">
+            <summary>
+            Converts this instance of <see cref="T:Slnx.SlnxFactory" /> into <see cref="T:Slnx.SlnxModel" />.
+            </summary>
+            <returns>An instance of <see cref="T:Slnx.SlnxModel" />.</returns>
+        </member>
+        <member name="T:Slnx.SlnxModel">
+            <summary>
+            Represents information about a SLNX file.
+            </summary>
+        </member>
+        <member name="P:Slnx.SlnxModel.TopLevelProjects">
+            <summary>
+            Gets all projects in the same level as the SLNX.
+            </summary>
+        </member>
+        <member name="P:Slnx.SlnxModel.TopLevelFolders">
+            <summary>
+            Gets all folders in the same level as the SLNX.
+            </summary>
+        </member>
+        <member name="M:Slnx.SlnxModel.#ctor(Slnx.Project[],Slnx.Folder[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.SlnxModel" /> class.
+            </summary>
+            <param name="projects">A list of projects.</param>
+            <param name="folders">A list of folders.</param>
+        </member>
+        <member name="M:Slnx.SlnxModel.Load(System.String)">
+            <summary>
+            Loads and parses a SLNX file.
+            </summary>
+            <param name="slnxContent">The string contents of the SLNX file. Use <see cref="M:System.IO.File.ReadAllText(System.String)" />.</param>
+            <returns>Information about that SLNX file.</returns>
+        </member>
+        <member name="M:Slnx.SlnxModel.Store(System.String,System.Xml.XmlWriterSettings)">
+            <summary>
+            Stores the data of this instance of <see cref="T:Slnx.SlnxModel" /> into a SLNX file.
+            </summary>
+            <param name="outputFile">
+            Output file. Can be anything but it is recommended for the
+            extension to end with .slnx.
+            </param>
+            <param name="settings">Settings for the style of the output XML. If the value is <see langword="null" />, default parameters are used.</param>
+            <remarks>
+            The output file will be attempted to be deleted if it exists.
+            </remarks>
+        </member>
+        <member name="T:Slnx.SolutionException">
+            <summary>
+            Represents an error related to SLNX syntax or its infrastructure.
+            </summary>
+        </member>
+        <member name="M:Slnx.SolutionException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.SolutionException" /> class.
+            </summary> 
+            <param name="message">Exception message.</param>
+        </member>
+        <member name="M:Slnx.SolutionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.SolutionException" /> class.
+            </summary> 
+            <param name="message">Exception message.</param>
+            <param name="innerException">An inner exception.</param>
+        </member>
+    </members>
+</doc>
