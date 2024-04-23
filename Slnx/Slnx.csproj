@@ -11,7 +11,7 @@
     <Title>Slnx</Title>
     <Authors>winscripter</Authors>
     <Description>SLNX Parser: Reader and Writer for the (currently) in-preview Visual Studio
-XML-based solution format found in Visual Studio 2022 17.10 Preview 4</Description>
+XML-based solution format found in Visual Studio 2022 17.10 Preview 3</Description>
     <Copyright>Copyright (c) winscripter, 2024</Copyright>
     <PackageProjectUrl>https://github.com/winscripter/Slnx</PackageProjectUrl>
     <RepositoryUrl>https://github.com/winscripter/Slnx</RepositoryUrl>
