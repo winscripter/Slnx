@@ -1,6 +1,8 @@
 # Slnx
 SLNX is a fast parser and writer for the (currently) new in-preview Visual Studio XML Solution format with a .slnx extension, introduced in Visual Studio 2022 17.10 Preview 3.
 
+Available on NuGet: https://nuget.org/packages/Slnx
+
 ### Reading
 
 ```cs
