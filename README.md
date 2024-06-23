@@ -39,7 +39,36 @@ File1.cs
 .editorconfig
 ```
 
-### Writing
+### Writing (for Slnx 2.0)
+```cs
+using Slnx;
+using System.Text.Json;
+
+// Note: This is a .NET 8 project and uses Collection Expressions.
+
+var factory = new SlnxFactory();
+
+var folder = new Folder("Solution Items");
+folder.AddProjectWithPathOnly("./CSharp/CSharp.csproj");
+folder.AddProjectWithPathOnly("./VB.NET/VB.NET.vbproj");
+folder.AddProject(new Project("./DockerCompose/DockerCompose.dcproj", typeGuid: Guid.NewGuid(), config: new(solution: "*|*", project: "*|*|Deploy")));
+var moreFolders = new Folder("C++");
+moreFolders.AddFiles(["util.cpp", "util.h", "data.cc", "data.h"]);
+folder.AddFiles(["File1.cs", "File2.cs"]);
+
+factory.AddFolder(folder);
+factory.AddProjectWithPathOnly("Slnx/Slnx.csproj");
+factory.AddProjectWithPathOnly("App/App.shproj");
+
+string content = factory.AsModel().Store();
+File.AppendAllText("OutputSlnx.txt", content);
+
+// To provide detailed information, I'll just JSONify it with System.Text.Json.
+var model = SlnxModel.Load(File.ReadAllText("OutputSlnx.txt"));
+Console.WriteLine(JsonSerializer.Serialize(model));
+```
+
+### Writing (for Slnx 1.0)
 ```cs
 using Slnx;
 
@@ -67,7 +96,7 @@ var model = factory.AsModel();
 model.Store("OutputSlnx.txt");
 ```
 
-Contents of `OutputSlnx.txt`:
+Both of these programs will generate `OutputSlnx.txt` with the following contents:
 ```
 <Solution>
     <Project Path="Slnx/Slnx.csproj" />
@@ -89,3 +118,9 @@ Contents of `OutputSlnx.txt`:
     </Folder>
 </Solution>
 ```
+
+# Contributing
+Bug reports, suggestions, questions and other feedback are welcome.
+
+# Compatibility
+Slnx uses the .NET 6.0 Runtime, but it works fine for preceding versions, including .NET 7.0, 8.0, and future releases.
