@@ -21,7 +21,7 @@
         </member>
         <member name="M:Slnx.DescendantConfiguration.#ctor(System.String,System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:Slnx.DescendantConfiguration" /> struct.
+            Initializes a new instance of the <see cref="T:Slnx.DescendantConfiguration" /> class.
             </summary>
             <param name="solution">Solution where this configuration applies to.</param>
             <param name="project">Project where this configuration applies to.</param>
@@ -43,17 +43,20 @@
         </member>
         <member name="P:Slnx.Folder.DescendantProjects">
             <summary>
-            Nested projects in the folder.
+            Nested projects in the folder. If this is <see langword="NULL"/>, then there
+            are no descendant projects.
             </summary>
         </member>
         <member name="P:Slnx.Folder.DescendantFolders">
             <summary>
-            Nested folders in the folder.
+            Nested folders in the folder. If this is <see langword="NULL"/>, then there
+            are no descendant folders.
             </summary>
         </member>
         <member name="P:Slnx.Folder.DescendantFiles">
             <summary>
-            Files in the folder.
+            Files in the folder. If this is <see langword="NULL"/>, then there
+            are no descendant files.
             </summary>
         </member>
         <member name="M:Slnx.Folder.#ctor(System.String,Slnx.Project[],Slnx.Folder[],System.String[])">
@@ -64,6 +67,153 @@
             <param name="projects">All projects.</param>
             <param name="folders">All folders.</param>
             <param name="files">All files.</param>
+        </member>
+        <member name="M:Slnx.Folder.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.Folder"/> class.
+            </summary>
+            <param name="name">The name of the folder.</param>
+            <remarks>
+            Properties <see cref="P:Slnx.Folder.DescendantProjects"/>, <see cref="P:Slnx.Folder.DescendantFiles"/>,
+            and <see cref="P:Slnx.Folder.DescendantFolders"/> will be <see langword="null"/>.
+            </remarks>
+        </member>
+        <member name="M:Slnx.Folder.#ctor(System.String,Slnx.Project[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.Folder"/> class.
+            </summary>
+            <param name="name">The name of the folder.</param>
+            <param name="projects">All projects.</param>
+            <remarks>
+            Properties <see cref="P:Slnx.Folder.DescendantFiles"/> and <see cref="P:Slnx.Folder.DescendantFolders"/>
+            will be <see langword="null"/>.
+            </remarks>
+        </member>
+        <member name="M:Slnx.Folder.#ctor(System.String,Slnx.Folder[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.Folder"/> class.
+            </summary>
+            <param name="name">The name of the folder.</param>
+            <param name="folders">All folders.</param>
+            <remarks>
+            Properties <see cref="P:Slnx.Folder.DescendantFiles"/> and <see cref="P:Slnx.Folder.DescendantProjects"/>
+            will be <see langword="null"/>.
+            </remarks>
+        </member>
+        <member name="M:Slnx.Folder.#ctor(System.String,System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.Folder"/> class.
+            </summary>
+            <param name="name">The name of the folder.</param>
+            <param name="files">All files.</param>
+            <remarks>
+            Properties <see cref="P:Slnx.Folder.DescendantProjects"/> and <see cref="P:Slnx.Folder.DescendantFolders"/>
+            will be <see langword="null"/>.
+            </remarks>
+        </member>
+        <member name="M:Slnx.Folder.#ctor(System.String,Slnx.Folder[],System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.Folder"/> class.
+            </summary>
+            <param name="name">The name of the folder.</param>
+            <param name="folders">All folders.</param>
+            <param name="files">All files.</param>
+            <remarks>
+            Property <see cref="P:Slnx.Folder.DescendantProjects"/> will be <see langword="null"/>.
+            </remarks>
+        </member>
+        <member name="M:Slnx.Folder.#ctor(System.String,Slnx.Folder[],Slnx.Project[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.Folder"/> class.
+            </summary>
+            <param name="name">The name of the folder.</param>
+            <param name="folders">All folders.</param>
+            <param name="projects">All projects.</param>
+            <remarks>
+            Property <see cref="P:Slnx.Folder.DescendantFiles"/> will be <see langword="null"/>.
+            </remarks>
+        </member>
+        <member name="M:Slnx.Folder.#ctor(System.String,Slnx.Project[],System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.Folder"/> class.
+            </summary>
+            <param name="name">The name of the folder.</param>
+            <param name="project">All projects.</param>
+            <param name="files">All files.</param>
+            <remarks>
+            Property <see cref="P:Slnx.Folder.DescendantFolders"/> will be <see langword="null"/>.
+            </remarks>
+        </member>
+        <member name="M:Slnx.Folder.#ctor(System.String,Slnx.Project[],Slnx.Folder[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.Folder"/> class.
+            </summary>
+            <param name="name">The name of the folder.</param>
+            <param name="project">All projects.</param>
+            <param name="folders">All folders.</param>
+            <remarks>
+            Property <see cref="P:Slnx.Folder.DescendantFiles"/> will be <see langword="null"/>.
+            </remarks>
+        </member>
+        <member name="M:Slnx.Folder.AddProjects(Slnx.Project[])">
+            <summary>
+            Adds a given array of projects to this instance of <see cref="T:Slnx.Folder"/>.
+            </summary>
+            <param name="projects">An array of projects to add.</param>
+            <returns>Current instance of <see cref="T:Slnx.Folder"/> after adding the given projects.</returns>
+        </member>
+        <member name="M:Slnx.Folder.AddProject(Slnx.Project)">
+            <summary>
+            Adds a single project to this instance of <see cref="T:Slnx.Folder"/>.
+            </summary>
+            <param name="project">A project that will be added.</param>
+            <returns>Current instance of <see cref="T:Slnx.Folder"/> after adding the given project.</returns>
+        </member>
+        <member name="M:Slnx.Folder.AddFiles(System.String[])">
+            <summary>
+            Adds a given array of files to this instance of <see cref="T:Slnx.Folder"/>.
+            </summary>
+            <param name="files">An array of files to add.</param>
+            <returns>Current instance of <see cref="T:Slnx.Folder"/> after adding the given files.</returns>
+        </member>
+        <member name="M:Slnx.Folder.AddFile(System.String)">
+            <summary>
+            Adds a single file to this instance of <see cref="T:Slnx.Folder"/>.
+            </summary>
+            <param name="file">A file that will be added.</param>
+            <returns>Current instance of <see cref="T:Slnx.Folder"/> after adding the given file.</returns>
+        </member>
+        <member name="M:Slnx.Folder.AddFolders(Slnx.Folder[])">
+            <summary>
+            Adds a given array of folders to this instance of <see cref="T:Slnx.Folder"/>.
+            </summary>
+            <param name="folders">An array of folders to add.</param>
+            <returns>Current instance of <see cref="T:Slnx.Folder"/> after adding the given folder.</returns>
+        </member>
+        <member name="M:Slnx.Folder.AddFolder(Slnx.Folder)">
+            <summary>
+            Adds a single folder to this instance of <see cref="T:Slnx.Folder"/>.
+            </summary>
+            <param name="folder">A folder that will be added.</param>
+            <returns>Current instance of <see cref="T:Slnx.Folder"/> after adding the given folder.</returns>
+        </member>
+        <member name="M:Slnx.Folder.AddProjectWithPathOnly(System.String)">
+            <summary>
+            Adds a new project without any configuration to this instance of <see cref="T:Slnx.Folder"/>
+            </summary>
+            <param name="path">The path to the project.</param>
+            <returns>
+            A tuple that contains two elements:
+            <list type="bullet">
+              <item>
+                <em>Item 1</em> (<see cref="T:Slnx.Folder"/>): Current instance of
+                <see cref="T:Slnx.Folder"/> after adding the project.
+              </item>
+              <item>
+                <em>Item 2</em> (<see cref="T:Slnx.Project"/>): The project that was added.
+              </item>
+            </list>
+            </returns>
         </member>
         <member name="T:Slnx.Project">
             <summary>
@@ -107,13 +257,27 @@
             Descendant configuration.
             </summary>
         </member>
-        <member name="M:Slnx.Project.#ctor(System.String,System.Nullable{System.Guid},System.Nullable{Slnx.DescendantConfiguration})">
+        <member name="M:Slnx.Project.#ctor(System.String,System.Nullable{System.Guid},Slnx.DescendantConfiguration)">
             <summary>
-            Initializes a new instance of the <see cref="T:Slnx.Project" /> struct.
+            Initializes a new instance of the <see cref="T:Slnx.Project" /> class.
             </summary>
             <param name="path">Path to the project file.</param>
             <param name="typeGuid">The GUID indicating its type.</param>
             <param name="config">The configuration.</param>
+        </member>
+        <member name="M:Slnx.Project.WithTypeGuid(System.Guid)">
+            <summary>
+            Changes the type GUID of this project to <paramref name="typeGuid"/> and returns it.
+            </summary>
+            <param name="typeGuid">The type GUID.</param>
+            <returns>Current instance of <see cref="T:Slnx.Project"/> with the given type GUID.</returns>
+        </member>
+        <member name="M:Slnx.Project.WithConfiguration(Slnx.DescendantConfiguration)">
+            <summary>
+            Changes the descendant configuration of this project to <paramref name="configuration"/> and returns it.
+            </summary>
+            <param name="configuration">The descendant project configuration.</param>
+            <returns>Current instance of <see cref="T:Slnx.Project"/> with the given configuration.</returns>
         </member>
         <member name="T:Slnx.ProjectType">
             <summary>
@@ -214,12 +378,12 @@
             Builds a SLNX file.
             </summary>
         </member>
-        <member name="F:Slnx.SlnxFactory.Folders">
+        <member name="P:Slnx.SlnxFactory.Folders">
             <summary>
             All folders.
             </summary>
         </member>
-        <member name="F:Slnx.SlnxFactory.Projects">
+        <member name="P:Slnx.SlnxFactory.Projects">
             <summary>
             All projects.
             </summary>
@@ -234,6 +398,20 @@
             Converts this instance of <see cref="T:Slnx.SlnxFactory" /> into <see cref="T:Slnx.SlnxModel" />.
             </summary>
             <returns>An instance of <see cref="T:Slnx.SlnxModel" />.</returns>
+        </member>
+        <member name="M:Slnx.SlnxFactory.AddFolder(Slnx.Folder)">
+            <summary>
+            Adds a new folder to the SLNX file.
+            </summary>
+            <param name="folder">The folder to add.</param>
+            <returns>Current instance of <see cref="T:Slnx.SlnxFactory"/> after adding a folder.</returns>
+        </member>
+        <member name="M:Slnx.SlnxFactory.AddProjectWithPathOnly(System.String)">
+            <summary>
+            Adds a new project to the SLNX file.
+            </summary>
+            <param name="path">The project to add.</param>
+            <returns>Current instance of <see cref="T:Slnx.SlnxFactory"/> after adding a project.</returns>
         </member>
         <member name="T:Slnx.SlnxModel">
             <summary>
@@ -277,6 +455,14 @@
             The output file will be attempted to be deleted if it exists.
             </remarks>
         </member>
+        <member name="M:Slnx.SlnxModel.Store(System.Xml.XmlWriterSettings)">
+            <summary>
+            Converts this instance of <see cref="T:Slnx.SlnxModel"/> to the string representation
+            of the SLNX file with same projects and folders.
+            </summary>
+            <param name="xmlWriterSettings">Settings for the style of the output XML. If the value is <see langword="null" />, default parameters are used.</param>
+            <returns>A string that represents the SLNX file with projects, folders, and other metadata from this instance of <see cref="T:Slnx.SlnxModel"/>.</returns>
+        </member>
         <member name="T:Slnx.SolutionException">
             <summary>
             Represents an error related to SLNX syntax or its infrastructure.
@@ -294,6 +480,11 @@
             </summary> 
             <param name="message">Exception message.</param>
             <param name="innerException">An inner exception.</param>
+        </member>
+        <member name="T:Slnx.TextBuilderInternal">
+            <summary>
+            Internal class used by Slnx to write text with indentation.
+            </summary>
         </member>
     </members>
 </doc>
