@@ -124,3 +124,36 @@ Bug reports, suggestions, questions and other feedback are welcome.
 
 # Compatibility
 Slnx uses the .NET 6.0 Runtime, but it works fine for preceding versions, including .NET 7.0, 8.0, and future releases.
+
+# Benchmarking
+Tested for SLNX 2.0 using `BenchmarkDotNet`, found in `./benchmarks` folder.
+### Read
+```
+
+BenchmarkDotNet v0.13.12, Windows 11 (10.0.22631.2861/23H2/2023Update/SunValley3)
+AMD Ryzen 7 4700U with Radeon Graphics, 1 CPU, 8 logical and 8 physical cores
+.NET SDK 8.0.204
+  [Host]     : .NET 8.0.4 (8.0.424.16909), X64 RyuJIT AVX2
+  DefaultJob : .NET 8.0.4 (8.0.424.16909), X64 RyuJIT AVX2
+
+
+```
+| Method  | Mean     | Error     | StdDev    | Gen0   | Allocated |
+|-------- |---------:|----------:|----------:|-------:|----------:|
+| Execute | 4.469 μs | 0.0834 μs | 0.0739 μs | 6.8970 |  14.17 KB |
+
+### Write
+```
+
+BenchmarkDotNet v0.13.12, Windows 11 (10.0.22631.2861/23H2/2023Update/SunValley3)
+AMD Ryzen 7 4700U with Radeon Graphics, 1 CPU, 8 logical and 8 physical cores
+.NET SDK 8.0.204
+  [Host]     : .NET 8.0.4 (8.0.424.16909), X64 RyuJIT AVX2
+  DefaultJob : .NET 8.0.4 (8.0.424.16909), X64 RyuJIT AVX2
+
+
+```
+| Method  | Mean     | Error     | StdDev    | Gen0    | Allocated |
+|-------- |---------:|----------:|----------:|--------:|----------:|
+| Execute | 8.763 μs | 0.1065 μs | 0.0944 μs | 17.6392 |   36.2 KB |
+
