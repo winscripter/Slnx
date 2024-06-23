@@ -126,7 +126,7 @@ Bug reports, suggestions, questions and other feedback are welcome.
 Slnx uses the .NET 6.0 Runtime, but it works fine for preceding versions, including .NET 7.0, 8.0, and future releases.
 
 # Benchmarking
-Tested for SLNX 2.0 using `BenchmarkDotNet`, found in `./benchmarks` folder.
+Tested for SLNX 2.0 using `BenchmarkDotNet`, found in `./benchmark` folder.
 ### Read
 ```
 
