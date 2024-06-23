@@ -7,17 +7,17 @@ namespace Slnx
     /// <summary>
     /// Represents information about a SLNX file.
     /// </summary>
-    public readonly struct SlnxModel
+    public class SlnxModel
     {
         /// <summary>
         /// Gets all projects in the same level as the SLNX.
         /// </summary>
-        public readonly Project[]? TopLevelProjects { get; init; }
+        public Project[]? TopLevelProjects { get; set; }
 
         /// <summary>
         /// Gets all folders in the same level as the SLNX.
         /// </summary>
-        public readonly Folder[]? TopLevelFolders { get; init; }
+        public Folder[]? TopLevelFolders { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SlnxModel" /> class.
@@ -51,8 +51,26 @@ namespace Slnx
         public void Store(string outputFile, XmlWriterSettings? settings = null)
         {
             settings ??= XmlPrivate.DefaultSettings;
+            
+            if (File.Exists(outputFile))
+            {
+                File.Delete(outputFile);
+            }
 
-            IndentedAppender innerContent = new(new StringBuilder());
+            string result = Store(settings);
+            File.AppendAllText(outputFile, result.ToString());
+        }
+
+        /// <summary>
+        /// Converts this instance of <see cref="SlnxModel"/> to the string representation
+        /// of the SLNX file with same projects and folders.
+        /// </summary>
+        /// <param name="xmlWriterSettings">Settings for the style of the output XML. If the value is <see langword="null" />, default parameters are used.</param>
+        /// <returns>A string that represents the SLNX file with projects, folders, and other metadata from this instance of <see cref="SlnxModel"/>.</returns>
+        public string Store(XmlWriterSettings? xmlWriterSettings = null)
+        {
+            xmlWriterSettings ??= XmlPrivate.DefaultSettings;
+            TextBuilderInternal innerContent = TextBuilderInternal.CreateNew();
 
             innerContent.WriteLine("<Solution>");
             innerContent.IndentUp();
@@ -78,14 +96,9 @@ namespace Slnx
 
             // Format the result
             var value = innerContent.GetBuilder().ToString();
-            innerContent.SetContent(XDocument.Parse(value).FormatIndented(settings!));
+            string result = XDocument.Parse(value).FormatIndented(xmlWriterSettings!);
 
-            if (File.Exists(outputFile))
-            {
-                File.Delete(outputFile);
-            }
-
-            File.AppendAllText(outputFile, innerContent.GetBuilder().ToString());
+            return result;
 
             void EmitProject(Project project)
             {
@@ -106,14 +119,14 @@ namespace Slnx
 
                     innerContent.WriteIndented($"<Configuration ");
 
-                    if (project.Configuration.Value.Solution is not null)
+                    if (project.Configuration.Solution is not null)
                     {
-                        innerContent.Write($"Solution=\"{project.Configuration.Value.Solution}\" ");
+                        innerContent.Write($"Solution=\"{project.Configuration.Solution}\" ");
                     }
 
-                    if (project.Configuration.Value.Project is not null)
+                    if (project.Configuration.Project is not null)
                     {
-                        innerContent.Write($"Project=\"{project.Configuration.Value.Project}\" ");
+                        innerContent.Write($"Project=\"{project.Configuration.Project}\" ");
                     }
 
                     innerContent.WriteLine(" />");
@@ -130,23 +143,23 @@ namespace Slnx
                 innerContent.WriteLineIndented($"<Folder Name=\"{folder.Name}\">");
                 innerContent.IndentUp();
 
-                foreach (string descendantFile in folder.DescendantFiles ?? Array.Empty<string>())
+                foreach (string descendantFile in folder.DescendantFiles ?? new List<string>())
                 {
                     innerContent.WriteLineIndented($"<File Path=\"{descendantFile}\" />");
                 }
 
-                foreach (Project project in folder.DescendantProjects ?? Array.Empty<Project>())
+                foreach (Project project in folder.DescendantProjects ?? new List<Project>())
                 {
                     EmitProject(project);
                 }
 
                 if (folder.DescendantFolders != null)
                 {
-                    if (folder.DescendantFolders.Length > 0)
+                    if (folder.DescendantFolders.Count > 0)
                     {
-                        foreach (Folder fldr in folder.DescendantFolders)
+                        foreach (Folder folder2 in folder.DescendantFolders)
                         {
-                            EmitFolder(fldr);
+                            EmitFolder(folder2);
                         }
                     }
                 }

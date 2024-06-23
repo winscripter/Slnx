@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a "&lt;Configuration&gt;" like tag.
     /// </summary>
-    public readonly struct DescendantConfiguration
+    public class DescendantConfiguration
     {
         /// <summary>
         /// Solution where this configuration applies to.
@@ -16,7 +16,7 @@
         public string? Project { get; init; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DescendantConfiguration" /> struct.
+        /// Initializes a new instance of the <see cref="DescendantConfiguration" /> class.
         /// </summary>
         /// <param name="solution">Solution where this configuration applies to.</param>
         /// <param name="project">Project where this configuration applies to.</param>

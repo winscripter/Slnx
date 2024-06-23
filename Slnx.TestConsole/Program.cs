@@ -1,6 +1,7 @@
 ﻿using Slnx;
 
 var factory = new SlnxFactory();
+
 factory.Folders.Add(new Folder("Solution Items", new[]
 {
     new Project("./CSharp/CSharp.csproj"),

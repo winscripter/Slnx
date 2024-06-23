@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slnx", "Slnx\Slnx.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slnx.TestConsole", "Slnx.TestConsole\Slnx.TestConsole.csproj", "{00BAC8CB-F830-493D-866D-19455BFD66A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slnx.TestConsoleV2", "Slnx.TestConsoleV2\Slnx.TestConsoleV2.csproj", "{1EC705E5-5C55-4B02-8BB4-334FF366B01C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{00BAC8CB-F830-493D-866D-19455BFD66A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00BAC8CB-F830-493D-866D-19455BFD66A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00BAC8CB-F830-493D-866D-19455BFD66A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC705E5-5C55-4B02-8BB4-334FF366B01C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC705E5-5C55-4B02-8BB4-334FF366B01C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC705E5-5C55-4B02-8BB4-334FF366B01C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC705E5-5C55-4B02-8BB4-334FF366B01C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents the type of a project file.
     /// </summary>
-    public enum ProjectType : byte
+    public enum ProjectType
     {
         /// <summary>
         /// C# Project (*.csproj)
