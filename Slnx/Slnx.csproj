@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyTitle>Slnx.dll</AssemblyTitle>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.0.1.0</AssemblyVersion>
     <Company>winscripter</Company>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Title>Slnx</Title>
@@ -19,28 +19,8 @@ XML-based solution format found in Visual Studio 2022 17.10 Preview 3.</Descript
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>VisualStudio, Solution, Sln, Slnx</PackageTags>
-    <Version>2.0.0.0</Version>
-    <PackageReleaseNotes>1. Every property from the following types are no longer init-only and now have the 'set' accessor:
-DescendantConfiguration
-Folder
-Project
-SlnxModel
-... except SlnxFactory
-
-2. From the SlnxFactory class, Fields named 'Folders' and 'Projects' are now init-only properties
-
-3. These types are now classes instead of structs:
-DescendantConfiguration
-Folder
-Project
-SlnxFactory
-SlnxModel
-
-4. Folder and Project now introduce more constructors, and also methods inspired by the Fluent interface (Method chaining)
-
-5. SlnxModel now has another Store method that takes an optional XmlWriterSettings and returns a string representing the SLNX content directly.
-
-6. XML Documentation was updated</PackageReleaseNotes>
+    <Version>2.0.1</Version>
+    <PackageReleaseNotes>Changed configuration from Debug to Release. No changes to the library were made.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
