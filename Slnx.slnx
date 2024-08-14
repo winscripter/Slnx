@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/test/">
+    <Project Path="test\Slnx.TestConsoleV2\Slnx.TestConsoleV2.csproj" Type="Classic C#" />
+    <Project Path="test\Slnx.TestConsole\Slnx.TestConsole.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src\Slnx\Slnx.csproj" Type="Classic C#" />
+  </Folder>
+</Solution>Path="Slnx.TestConsoleV2\Slnx.TestConsoleV2.csproj" />
+  <Project Path="Slnx.TestConsole\Slnx.TestConsole.csproj" />
+</Solution>
