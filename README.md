@@ -41,7 +41,7 @@ File1.cs
 .editorconfig
 ```
 
-### Writing (for Slnx 2.0)
+### Writing (applies to Slnx 2.0)
 ```cs
 using Slnx;
 using System.Text.Json;
@@ -70,7 +70,7 @@ var model = SlnxModel.Load(File.ReadAllText("OutputSlnx.txt"));
 Console.WriteLine(JsonSerializer.Serialize(model));
 ```
 
-### Writing (for Slnx 1.0)
+### Writing (applies to Slnx 1.0)
 ```cs
 using Slnx;
 
@@ -128,7 +128,7 @@ Bug reports, suggestions, questions and other feedback are welcome.
 Slnx uses the .NET 6.0 Runtime, but it works fine for preceding versions, including .NET 7.0, 8.0, and future releases.
 
 # Benchmarking
-Tested for SLNX 2.0 using `BenchmarkDotNet`, found in `./benchmark` folder.
+This is the benchmark for SLNX version 2.0, using `BenchmarkDotNet`. Benchmarks are found in the `./benchmark` folder.
 ### Read
 ```
 
