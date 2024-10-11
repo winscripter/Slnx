@@ -41,7 +41,7 @@ File1.cs
 .editorconfig
 ```
 
-### Writing (applies to Slnx 2.0)
+### Writing (applies to Slnx 2.0 and later)
 ```cs
 using Slnx;
 using System.Text.Json;
@@ -68,6 +68,15 @@ File.AppendAllText("OutputSlnx.txt", content);
 // To provide detailed information, I'll just JSONify it with System.Text.Json.
 var model = SlnxModel.Load(File.ReadAllText("OutputSlnx.txt"));
 Console.WriteLine(JsonSerializer.Serialize(model));
+```
+
+Starting with Slnx 3.0, you can convert `SlnxModel` to `string` asynchronously:
+```cs
+// ...
+factory.AddProjectWithPathOnly("App/App.shproj");
+
+string content = await factory.AsModel().StoreAsync(); // <---
+File.AppendAllText("OutputSlnx.txt", content);
 ```
 
 ### Writing (applies to Slnx 1.0)
