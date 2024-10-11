@@ -246,10 +246,10 @@
             Checks if the <see cref="P:Slnx.Project.Extension" /> property has an extension.
             </summary> 
         </member>
-        <member name="P:Slnx.Project.TypeGuid">
+        <member name="P:Slnx.Project.ProjectType">
             <summary>
-            Gets the type of the project from the GUID. The value is always null
-            unless the XML attribute "Type" exists.
+            Gets the type of the project. This can be a string (for example, a string "Classic C#"),
+            or a GUID.
             </summary>
         </member>
         <member name="P:Slnx.Project.Configuration">
@@ -257,20 +257,13 @@
             Descendant configuration.
             </summary>
         </member>
-        <member name="M:Slnx.Project.#ctor(System.String,System.Nullable{System.Guid},Slnx.DescendantConfiguration)">
+        <member name="M:Slnx.Project.#ctor(System.String,System.String,Slnx.DescendantConfiguration)">
             <summary>
             Initializes a new instance of the <see cref="T:Slnx.Project" /> class.
             </summary>
             <param name="path">Path to the project file.</param>
-            <param name="typeGuid">The GUID indicating its type.</param>
+            <param name="type">The project type.</param>
             <param name="config">The configuration.</param>
-        </member>
-        <member name="M:Slnx.Project.WithTypeGuid(System.Guid)">
-            <summary>
-            Changes the type GUID of this project to <paramref name="typeGuid"/> and returns it.
-            </summary>
-            <param name="typeGuid">The type GUID.</param>
-            <returns>Current instance of <see cref="T:Slnx.Project"/> with the given type GUID.</returns>
         </member>
         <member name="M:Slnx.Project.WithConfiguration(Slnx.DescendantConfiguration)">
             <summary>
@@ -351,7 +344,7 @@
         </member>
         <member name="F:Slnx.ProjectType.Unknown">
             <summary>
-            Any project type which is not defined here.
+            Any project type which is not defined.
             </summary>
         </member>
         <member name="T:Slnx.ProjectTypeExtensions">
@@ -373,9 +366,70 @@
             <param name="extension">Extension of the project, excluding the period.</param>
             <returns>A type of the project from the extension.</returns>
         </member>
+        <member name="T:Slnx.Property">
+            <summary>
+            Represents a &lt;Property&gt; element.
+            </summary>
+        </member>
+        <member name="P:Slnx.Property.Name">
+            <summary>
+            Name of the property.
+            </summary>
+        </member>
+        <member name="P:Slnx.Property.Value">
+            <summary>
+            Property value.
+            </summary>
+        </member>
+        <member name="M:Slnx.Property.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.Property"/> class.
+            </summary>
+            <param name="name">Name of the property.</param>
+            <param name="value">Property value.</param>
+        </member>
+        <member name="P:Slnx.Property.IsMSBuildSharedItemsImports">
+            <summary>
+            Checks if the name of the property signifies an MSBuild Shared Items import.
+            </summary>
+            <remarks>
+            Example:
+            <code>
+              Path\To\ProjItems\File.projitems*{AnyGuidHere}*SharedItemsImports
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Slnx.PropertyCollection">
+            <summary>
+            Represents the &lt;Properties&gt; element.
+            </summary>
+        </member>
+        <member name="P:Slnx.PropertyCollection.Name">
+            <summary>
+            Name of the property collection (if present). Example: <c>SharedMSBuildProjectFiles</c>.
+            </summary>
+        </member>
+        <member name="P:Slnx.PropertyCollection.Scope">
+            <summary>
+            Scope of the property collection (if present). Example: <c>PreLoad</c>.
+            </summary>
+        </member>
+        <member name="P:Slnx.PropertyCollection.Properties">
+            <summary>
+            All descendant properties.
+            </summary>
+        </member>
+        <member name="M:Slnx.PropertyCollection.#ctor(System.String,System.String,System.Collections.Generic.List{Slnx.Property})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Slnx.PropertyCollection"/>.
+            </summary>
+            <param name="name">Name of the property collection (if present).</param>
+            <param name="scope">Scope of the property collection (if present).</param>
+            <param name="properties">All descendant properties.</param>
+        </member>
         <member name="T:Slnx.SlnxFactory">
             <summary>
-            Builds a SLNX file.
+            Builds an SLNX file.
             </summary>
         </member>
         <member name="P:Slnx.SlnxFactory.Folders">
@@ -386,6 +440,11 @@
         <member name="P:Slnx.SlnxFactory.Projects">
             <summary>
             All projects.
+            </summary>
+        </member>
+        <member name="P:Slnx.SlnxFactory.Properties">
+            <summary>
+            All &lt;Properties&gt; elements.
             </summary>
         </member>
         <member name="M:Slnx.SlnxFactory.#ctor">
@@ -405,6 +464,10 @@
             </summary>
             <param name="folder">The folder to add.</param>
             <returns>Current instance of <see cref="T:Slnx.SlnxFactory"/> after adding a folder.</returns>
+            <remarks>
+              This will also return a copy of the current instance, which could introduce additional
+              memory allocation.
+            </remarks>
         </member>
         <member name="M:Slnx.SlnxFactory.AddProjectWithPathOnly(System.String)">
             <summary>
@@ -412,10 +475,20 @@
             </summary>
             <param name="path">The project to add.</param>
             <returns>Current instance of <see cref="T:Slnx.SlnxFactory"/> after adding a project.</returns>
+            <remarks>
+              This will also return a copy of the current instance, which could introduce additional
+              memory allocation.
+            </remarks>
         </member>
         <member name="T:Slnx.SlnxModel">
             <summary>
-            Represents information about a SLNX file.
+            Represents information about an SLNX file.
+            </summary>
+        </member>
+        <member name="F:Slnx.SlnxModel.DefaultXmlSettings">
+            <summary>
+            If you pass <see langword="null"/> to <see cref="M:Slnx.SlnxModel.Store(System.Xml.XmlWriterSettings)"/>, this is
+            the <see cref="T:System.Xml.XmlWriterSettings"/> instance that <see cref="N:Slnx"/> will use.
             </summary>
         </member>
         <member name="P:Slnx.SlnxModel.TopLevelProjects">
@@ -428,12 +501,19 @@
             Gets all folders in the same level as the SLNX.
             </summary>
         </member>
-        <member name="M:Slnx.SlnxModel.#ctor(Slnx.Project[],Slnx.Folder[])">
+        <member name="P:Slnx.SlnxModel.PropertyCollections">
+            <summary>
+            Gets all property collections in the same level as the SLNX. These can only appear
+            in the same level as the SLNX - they cannot appear inside folder or project elements.
+            </summary>
+        </member>
+        <member name="M:Slnx.SlnxModel.#ctor(System.Collections.Generic.List{Slnx.Project},System.Collections.Generic.List{Slnx.Folder},System.Collections.Generic.List{Slnx.PropertyCollection})">
             <summary>
             Initializes a new instance of the <see cref="T:Slnx.SlnxModel" /> class.
             </summary>
             <param name="projects">A list of projects.</param>
             <param name="folders">A list of folders.</param>
+            <param name="propertyCollections">A list of property collections.</param>
         </member>
         <member name="M:Slnx.SlnxModel.Load(System.String)">
             <summary>
@@ -456,6 +536,27 @@
             </remarks>
         </member>
         <member name="M:Slnx.SlnxModel.Store(System.Xml.XmlWriterSettings)">
+            <summary>
+            Converts this instance of <see cref="T:Slnx.SlnxModel"/> to the string representation
+            of the SLNX file with same projects and folders.
+            </summary>
+            <param name="xmlWriterSettings">Settings for the style of the output XML. If the value is <see langword="null" />, default parameters are used.</param>
+            <returns>A string that represents the SLNX file with projects, folders, and other metadata from this instance of <see cref="T:Slnx.SlnxModel"/>.</returns>
+        </member>
+        <member name="M:Slnx.SlnxModel.StoreAsync(System.String,System.Xml.XmlWriterSettings)">
+            <summary>
+            Stores the data of this instance of <see cref="T:Slnx.SlnxModel" /> into a SLNX file.
+            </summary>
+            <param name="outputFile">
+            Output file. Can be anything but it is recommended for the
+            extension to end with .slnx.
+            </param>
+            <param name="settings">Settings for the style of the output XML. If the value is <see langword="null" />, default parameters are used.</param>
+            <remarks>
+            The output file will be attempted to be deleted if it exists.
+            </remarks>
+        </member>
+        <member name="M:Slnx.SlnxModel.StoreAsync(System.Xml.XmlWriterSettings)">
             <summary>
             Converts this instance of <see cref="T:Slnx.SlnxModel"/> to the string representation
             of the SLNX file with same projects and folders.
