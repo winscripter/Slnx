@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+      <TargetFramework>net6.0</TargetFramework>
+      <ImplicitUsings>enable</ImplicitUsings>
+      <Nullable>enable</Nullable>
+      <AssemblyTitle>Slnx.dll</AssemblyTitle>
+      <AssemblyVersion>3.0.0.0</AssemblyVersion>
+      <Company>winscripter</Company>
+      <GenerateDocumentationFile>True</GenerateDocumentationFile>
+      <Title>Slnx</Title>
+      <Authors>winscripter</Authors>
+      <Description>
+          SLNX Parser: Reader and Writer for the (currently) in-preview Visual Studio
+          XML-based solution format found in Visual Studio 2022 17.10 Preview 3.
+      </Description>
+      <Copyright>Copyright (c) winscripter, 2024</Copyright>
+      <PackageProjectUrl>https://github.com/winscripter/Slnx</PackageProjectUrl>
+      <RepositoryUrl>https://github.com/winscripter/Slnx</RepositoryUrl>
+      <PackageLicenseExpression>MIT</PackageLicenseExpression>
+      <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
+      <PackageTags>VisualStudio, Solution, Sln, Slnx</PackageTags>
+      <Version>3.0.0</Version>
+      <PackageReleaseNotes>1. Improved performance
+2. Exporting SLNX is now faster and involves lesser memory allocations
+3. Added support for parsing 'Properties' and 'Property' SLNX elements
+4. Added async version of SlnxModel.Store method</PackageReleaseNotes>
+  </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\..\..\..\Desktop\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
+
+</Project>
