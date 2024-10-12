@@ -69,8 +69,8 @@ File.AppendAllText("OutputSlnx.txt", content);
 var model = SlnxModel.Load(File.ReadAllText("OutputSlnx.txt"));
 Console.WriteLine(JsonSerializer.Serialize(model));
 ```
-
-Note: The constructor of the `Project` class was slightly changed. Change this:
+#### For Slnx 3.0
+Note: The constructor of the `Project` class was slightly changed in Slnx 3.0. Change this:
 ```cs
 // ...
 folder.AddProject(new Project("./DockerCompose/DockerCompose.dcproj", typeGuid: Guid.NewGuid(), config: new(solution: "*|*", project: "*|*|Deploy")));
