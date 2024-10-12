@@ -41,7 +41,7 @@ File1.cs
 .editorconfig
 ```
 
-### Writing (applies to Slnx 2.0 and later)
+### Writing (applies to Slnx 2.0, see below code block for Slnx 3.0)
 ```cs
 using Slnx;
 using System.Text.Json;
@@ -68,6 +68,19 @@ File.AppendAllText("OutputSlnx.txt", content);
 // To provide detailed information, I'll just JSONify it with System.Text.Json.
 var model = SlnxModel.Load(File.ReadAllText("OutputSlnx.txt"));
 Console.WriteLine(JsonSerializer.Serialize(model));
+```
+
+Note: The constructor of the `Project` class was slightly changed. Change this:
+```cs
+// ...
+folder.AddProject(new Project("./DockerCompose/DockerCompose.dcproj", typeGuid: Guid.NewGuid(), config: new(solution: "*|*", project: "*|*|Deploy")));
+var moreFolders = new Folder("C++");
+```
+to:
+```cs
+// ...
+folder.AddProject(new Project("./DockerCompose/DockerCompose.dcproj", /*HERE -->*/type: Guid.NewGuid().ToString(), /*<-- HERE*/ config: new(solution: "*|*", project: "*|*|Deploy")));
+var moreFolders = new Folder("C++");
 ```
 
 Starting with Slnx 3.0, you can convert `SlnxModel` to `string` asynchronously:
