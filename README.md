@@ -1,3 +1,4 @@
+<!--
 > [!IMPORTANT]
 > This project is only a temporary solution to work with SLNX files before MSBuild supports SLNX files.
 > 
@@ -9,6 +10,7 @@
 > have much use when MSBuild begins to support SLNX files. Furthermore, the SLNX file format is not officially documented. Because of this,
 > the Slnx library may not be able to parse every single SLNX file, because the format is not officially documented.
 >
+-->
 
 # Slnx
 SLNX is a fast parser and writer for the (currently) new in-preview Visual Studio XML Solution format with a .slnx extension, introduced in Visual Studio 2022 17.10 Preview 3.
