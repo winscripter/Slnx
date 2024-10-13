@@ -582,10 +582,5 @@
             <param name="message">Exception message.</param>
             <param name="innerException">An inner exception.</param>
         </member>
-        <member name="T:Slnx.TextBuilderInternal">
-            <summary>
-            Internal class used by Slnx to write text with indentation.
-            </summary>
-        </member>
     </members>
 </doc>
