@@ -1,16 +1,10 @@
-<!--
 > [!IMPORTANT]
-> This project is only a temporary solution to work with SLNX files before MSBuild supports SLNX files.
-> 
-> Currently, MSBuild does not support reading and manipulating SLNX files. However, as soon as it does, this
-> library may not be suitable anymore.
+> Slnx is now deprecated.
 >
-> However, MSBuild is actively getting new commits and PRs that put effort into supporting SLNX files. This is a good sign,
-> as we can finally begin building SLNX files in apps that support them. This, however, also means that the Slnx library will not
-> have much use when MSBuild begins to support SLNX files. Furthermore, the SLNX file format is not officially documented. Because of this,
-> the Slnx library may not be able to parse every single SLNX file, because the format is not officially documented.
+> The reason is that MSBuild now officially has support for reading/writing/building SLNX files. Additionally,
+> MSBuild relies on a NuGet package: [Microsoft.VisualStudio.SolutionPersistence](https://nuget.org/packages/Microsoft.VisualStudio.SolutionPersistence), which is
+> a library directly from Visual Studio that parses SLNX files with support to parse every aspect of an SLNX file, even though SLNX is an undocumented file type.
 >
--->
 
 # Slnx
 SLNX is a fast parser and writer for the (currently) new in-preview Visual Studio XML Solution format with a .slnx extension, introduced in Visual Studio 2022 17.10 Preview 3.
