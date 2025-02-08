@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> It is recommended to use an official library for handling SLNX files. See Microsoft.VisualStudio.SolutionPersistence
+> It is recommended to use an official library to work with SLNX files. See Microsoft.VisualStudio.SolutionPersistence
 > on [NuGet](https://nuget.org/packages/Microsoft.VisualStudio.SolutionPersistence) or [GitHub](https://github.com/microsoft/vs-solutionpersistence).
 > 
 
